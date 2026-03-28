@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  # ---------------- MongoDB Database ----------------
+  mongodb:
+    image: mongo:6.0
+    container_name: farm_mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secretpassword
+    networks:
+      - farm_net
+
+  # ---------------- Redis (reserved for future use) ----------------
+  # The backend currently uses an in-memory LRU cache.
+  # Redis is included here for easy upgrade when horizontal scaling is needed.
+  redis:
+    image: redis:7-alpine
+    container_name: farm_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - farm_net
+
+  # ---------------- Node.js Backend ----------------
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: farm_backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+      - redis
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      # MongoDB uses the docker-compose service name 'mongodb' as the hostname
+      - MONGO_URI=mongodb://admin:secretpassword@mongodb:27017/farmfresh?authSource=admin
+      - REDIS_URL=redis://redis:6379
+      # ⚠️  Change this to a strong random secret in any real deployment
+      - JWT_SECRET=SuperSecretKeyForProduction123!
+      # Set to the public URL of your frontend in production
+      - CORS_ORIGIN=http://localhost:80
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    networks:
+      - farm_net
+
+  # ---------------- React/Vite Frontend (Nginx) ----------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # VITE_API_URL is the URL the *browser* (not Docker) uses to reach the backend.
+        # For local Docker Compose: http://localhost:5000
+        # For production: https://your-api-domain.com
+        - VITE_API_URL=http://localhost:5000
+    container_name: farm_frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - farm_net
+
+volumes:
+  mongodb_data:
+  redis_data:
+
+networks:
+  farm_net:
+    driver: bridge
