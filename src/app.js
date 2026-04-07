@@ -53,7 +53,19 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    origin: isProd ? (process.env.CORS_ORIGIN || false) : "http://localhost:5173",
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, curl, etc.)
+      if (!origin) return callback(null, true);
+
+      const allowedOrigins = isProd
+        ? (process.env.CORS_ORIGIN || "").split(",").map((o) => o.trim()).filter(Boolean)
+        : ["http://localhost:5173", "http://127.0.0.1:5173"];
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS: Origin ${origin} not allowed`));
+    },
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // Allow cookies

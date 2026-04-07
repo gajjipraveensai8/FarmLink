@@ -2,17 +2,17 @@ import { Navigate } from "react-router-dom";
 
 /**
  * Wraps a route element.
- * If no JWT token is found in localStorage the user is
- * redirected to /login.  Otherwise the children render normally.
+ * Checks for the "user" object in localStorage (saved by AuthContext on login).
+ * Redirects to /login if not found.
  */
 export default function ProtectedRoute({ children }) {
-  let token = null;
+  let user = null;
   try {
-    token = localStorage.getItem("token");
+    user = JSON.parse(localStorage.getItem("user"));
   } catch (e) {
-    token = null;
+    user = null;
   }
-  if (!token) {
+  if (!user) {
     return <Navigate to="/login" replace />;
   }
   return children;
