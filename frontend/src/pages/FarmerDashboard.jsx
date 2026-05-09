@@ -195,7 +195,7 @@ export default function FarmerDashboard() {
       <Navbar />
 
       {/* Main Header / Hero Section */}
-      <div className="pt-20 pb-40 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #1e3a5f 70%, #0f172a 100%)' }}>
+      <div className="pt-10 sm:pt-20 pb-24 sm:pb-40 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #1e3a5f 70%, #0f172a 100%)' }}>
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl -mr-48 -mt-48" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-500/15 rounded-full blur-3xl -ml-32 -mb-32" />
@@ -214,7 +214,7 @@ export default function FarmerDashboard() {
           </div>
         )}
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10 mt-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 mt-4 sm:mt-8">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-12">
             <div className="flex items-center gap-6 md:gap-8">
               <div className="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 rounded-[1.5rem] md:rounded-[2rem] bg-brand-500 flex items-center justify-center text-4xl md:text-5xl shadow-elevated animate-float">
@@ -233,9 +233,9 @@ export default function FarmerDashboard() {
             {!isSuspended && (
               <button
                 onClick={() => setShowAddForm(true)}
-                className="bg-brand-500 hover:bg-brand-600 text-white font-black px-8 md:px-10 py-4 md:py-5 rounded-[1.5rem] md:rounded-[2rem] flex items-center justify-center gap-3 transition-all shadow-xl shadow-black/30 hover:-translate-y-1 active:scale-95 group whitespace-nowrap self-start lg:self-center"
+                className="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white font-black px-6 sm:px-10 py-4 sm:py-5 rounded-2xl sm:rounded-[2rem] flex items-center justify-center gap-3 transition-all shadow-xl shadow-black/30 hover:-translate-y-1 active:scale-95 group whitespace-nowrap self-start lg:self-center mt-2 sm:mt-0"
               >
-                <Plus className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-90 transition-transform" />
+                <Plus className="w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-90 transition-transform" />
                 LIST NEW PRODUCE
               </button>
             )}
@@ -243,7 +243,7 @@ export default function FarmerDashboard() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 -mt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 -mt-10 sm:-mt-16">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16">
           {[
@@ -264,7 +264,7 @@ export default function FarmerDashboard() {
         </div>
 
         {/* Navigation Tabs - Modern Underline Style */}
-        <div className="flex border-b border-slate-200 mb-12 gap-12 px-2 overflow-x-auto no-scrollbar">
+        <div className="flex border-b border-slate-200 mb-8 sm:mb-12 gap-4 sm:gap-8 px-2 overflow-x-auto no-scrollbar">
           {[
             { id: "products", label: "Inventory" },
             { id: "orders", label: "Recent Orders" },

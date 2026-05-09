@@ -61,10 +61,10 @@ export default function AddProductModal({ showAddForm, setShowAddForm, getUnit, 
 
     return (
         <div className="fixed inset-0 z-[60] overflow-hidden bg-slate-900/60 backdrop-blur-sm transition-opacity">
-            <div className="absolute inset-y-0 right-0 max-w-full flex pl-10">
-                <div className="w-screen max-w-lg">
-                    <div className="h-full flex flex-col bg-white shadow-2xl rounded-l-[3rem] overflow-hidden border-l border-slate-100">
-                        <div className="p-12 flex flex-col h-full overflow-y-auto">
+            <div className="absolute inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
+                <div className="w-screen sm:max-w-lg">
+                    <div className="h-full flex flex-col bg-white shadow-2xl sm:rounded-l-[3rem] overflow-hidden sm:border-l sm:border-slate-100">
+                        <div className="p-5 sm:p-12 flex flex-col h-full overflow-y-auto">
                             <div className="flex items-center justify-between mb-12">
                                 <div>
                                     <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase">New <span className="text-brand-600">Harvest</span></h2>

@@ -52,6 +52,19 @@
                 transparent);
         animation: skeleton-wave 1.5s infinite;
     }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .touch-target {
+        @apply min-h-[44px] min-w-[44px];
+    }
 }
 
 @keyframes skeleton-wave {

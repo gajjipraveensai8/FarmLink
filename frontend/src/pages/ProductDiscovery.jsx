@@ -105,22 +105,22 @@ export default function ProductDiscovery() {
       <Navbar />
 
       {/* Hero Section - Professional Banner */}
-      <div className="max-w-[1400px] mx-auto px-6 mt-8">
-        <div className="relative overflow-hidden rounded-[2rem] bg-brand-900 h-64 md:h-80 flex items-center shadow-elevated">
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-6 mt-4 sm:mt-8">
+        <div className="relative overflow-hidden rounded-2xl sm:rounded-[2rem] bg-brand-900 h-44 sm:h-64 md:h-80 flex items-center shadow-elevated">
           {/* Decorative Pattern */}
           <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#fff 1.5px, transparent 1.5px)', backgroundSize: '30px 30px' }} />
 
-          <div className="relative z-10 px-12 md:px-20 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-300 text-[10px] font-black uppercase tracking-widest mb-6 animate-fade-in">
+          <div className="relative z-10 px-5 sm:px-12 md:px-20 max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-300 text-[10px] font-black uppercase tracking-widest mb-3 sm:mb-6 animate-fade-in">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-400" />
               Now Delivering Fresh
             </div>
-            <h1 className="text-4xl md:text-6xl font-black text-white leading-[1.1] mb-6 animate-slide-up">
-              Straight from the <span className="text-brand-400">Farm</span> <br />
+            <h1 className="text-2xl sm:text-4xl md:text-6xl font-black text-white leading-[1.1] mb-2 sm:mb-6 animate-slide-up">
+              Straight from the <span className="text-brand-400">Farm</span>{" "}
               to your <span className="text-accent-400">Doorstep</span>
             </h1>
-            <p className="text-brand-100/70 text-sm md:text-base font-medium max-w-md mb-8 animate-fade-in delay-200">
-              Support local farmers and get the freshest organic produce delivered in minutes. Quality you can trust, speed you'll love.
+            <p className="text-brand-100/70 text-xs sm:text-sm md:text-base font-medium max-w-md hidden sm:block animate-fade-in delay-200">
+              Support local farmers and get the freshest organic produce delivered in minutes.
             </p>
           </div>
 
@@ -131,11 +131,33 @@ export default function ProductDiscovery() {
         </div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 mt-12 pb-20">
-        <div className="flex flex-col lg:flex-row gap-12">
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-6 mt-4 sm:mt-12 pb-20">
 
-          {/* Sidebar - Category List */}
-          <aside className="w-full lg:w-72 flex-shrink-0">
+        {/* Mobile Category Pills — horizontal scroll, shown only on < lg */}
+        <div className="lg:hidden flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-4 -mx-1 px-1">
+          {CATEGORIES.map(cat => {
+            const isActive = (category === cat.id || (cat.id === 'all' && !category));
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setParams({ category: cat.id === 'all' ? null : cat.id, page: '1' })}
+                className={`flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-full text-xs font-bold transition-all border ${
+                  isActive
+                    ? 'bg-brand-600 text-white border-brand-600 shadow-md shadow-brand-100'
+                    : 'bg-white text-slate-600 border-slate-200 hover:border-brand-300'
+                }`}
+              >
+                <span className="text-base">{cat.img}</span>
+                <span>{cat.label}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+
+          {/* Sidebar - Category List — desktop only */}
+          <aside className="hidden lg:block w-72 flex-shrink-0">
             <div className="sticky top-28 bg-white/50 backdrop-blur-sm rounded-3xl border border-slate-100 p-6 shadow-sm">
               <div className="flex items-center justify-between mb-8 px-2">
                 <h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">Categories</h2>
@@ -245,19 +267,19 @@ export default function ProductDiscovery() {
                 ))}
               </div>
             ) : products.length === 0 ? (
-              <div className="bg-white rounded-[2.5rem] p-24 text-center border border-slate-100 shadow-sm">
-                <div className="text-7xl mb-8 animate-float">📦</div>
-                <h2 className="text-2xl font-black text-slate-900 mb-3">Harvest is coming soon</h2>
-                <p className="text-slate-400 font-medium max-w-sm mx-auto">We couldn't find any products in this category right now. Check back in a few hours!</p>
+              <div className="bg-white rounded-3xl sm:rounded-[2.5rem] p-8 sm:p-16 md:p-24 text-center border border-slate-100 shadow-sm">
+                <div className="text-5xl sm:text-7xl mb-4 sm:mb-8 animate-float">📦</div>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-3">Harvest is coming soon</h2>
+                <p className="text-slate-400 font-medium max-w-sm mx-auto text-sm">We couldn't find any products in this category right now. Check back in a few hours!</p>
                 <button
                   onClick={() => setParams({ category: null })}
-                  className="mt-8 px-8 py-3 bg-brand-600 text-white rounded-2xl font-bold text-sm shadow-lg shadow-brand-100 hover:bg-brand-700 transition-all active:scale-95"
+                  className="mt-6 sm:mt-8 px-6 sm:px-8 py-3 bg-brand-600 text-white rounded-2xl font-bold text-sm shadow-lg shadow-brand-100 hover:bg-brand-700 transition-all active:scale-95"
                 >
                   Clear Filters
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 animate-fade-in">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 animate-fade-in">
                 {products.map((p) => (
                   <ProductCard
                     key={p._id}

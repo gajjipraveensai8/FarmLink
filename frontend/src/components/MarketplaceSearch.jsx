@@ -25,7 +25,7 @@ export default function MarketplaceSearch({
 
   return (
     <div className="space-y-4 mb-8">
-      <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-3 w-full">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full">
         <div className="relative flex-grow">
           <input
             type="text"
@@ -40,7 +40,7 @@ export default function MarketplaceSearch({
           <select
             value={radius}
             onChange={(e) => setRadius(e.target.value)}
-            className="rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-400 shadow-sm"
+            className="flex-grow sm:flex-grow-0 rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-400 shadow-sm"
           >
             <option value="5">Within 5 km</option>
             <option value="10">Within 10 km</option>
@@ -51,7 +51,7 @@ export default function MarketplaceSearch({
 
           <button
             type="submit"
-            className="rounded-2xl bg-brand-600 px-8 py-3.5 text-sm font-bold text-white hover:bg-brand-700 transition-all duration-200 shadow-md shadow-brand-100 active:scale-95"
+            className="rounded-2xl bg-brand-600 px-5 sm:px-8 py-3.5 text-sm font-bold text-white hover:bg-brand-700 transition-all duration-200 shadow-md shadow-brand-100 active:scale-95 whitespace-nowrap"
           >
             Search
           </button>

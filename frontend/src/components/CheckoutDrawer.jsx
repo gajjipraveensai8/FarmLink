@@ -77,7 +77,7 @@ export default function CheckoutDrawer({ isOpen, onClose }) {
     return (
         <div className="fixed inset-0 z-[100] flex justify-end bg-black/40 backdrop-blur-sm transition-opacity duration-300">
             <div
-                className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-[slideInRight_0.3s_ease-out]"
+                className="w-full sm:max-w-md bg-white h-full shadow-2xl flex flex-col animate-[slideInRight_0.3s_ease-out]"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header */}

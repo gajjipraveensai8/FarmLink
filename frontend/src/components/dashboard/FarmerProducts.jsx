@@ -4,13 +4,13 @@ export default function FarmerProducts({ products, getUnit, handleDelete, setSho
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {products.length === 0 ? (
-                <div className="col-span-full bg-white rounded-[3rem] p-32 text-center border border-slate-100 shadow-sm">
-                    <div className="text-7xl mb-8 opacity-40">🚜</div>
-                    <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight">Empty Granary</h3>
-                    <p className="text-slate-400 font-medium max-w-sm mx-auto mb-10">You haven't listed any products yet. Take the first step by listing your harvest.</p>
+                <div className="col-span-full bg-white rounded-3xl sm:rounded-[3rem] p-8 sm:p-20 md:p-32 text-center border border-slate-100 shadow-sm">
+                    <div className="text-5xl sm:text-7xl mb-4 sm:mb-8 opacity-40">🚜</div>
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-3 sm:mb-4 tracking-tight">Empty Granary</h3>
+                    <p className="text-slate-400 font-medium max-w-sm mx-auto mb-6 sm:mb-10 text-sm">You haven't listed any products yet. Take the first step by listing your harvest.</p>
                     <button
                         onClick={() => setShowAddForm(true)}
-                        className="px-10 py-4 bg-brand-600 text-white rounded-2xl font-bold text-sm shadow-lg shadow-brand-100 hover:bg-brand-700 active:scale-95"
+                        className="px-6 sm:px-10 py-3 sm:py-4 bg-brand-600 text-white rounded-2xl font-bold text-sm shadow-lg shadow-brand-100 hover:bg-brand-700 active:scale-95"
                     >
                         Start Selling
                     </button>

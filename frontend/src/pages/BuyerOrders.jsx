@@ -92,29 +92,29 @@ export default function BuyerOrders() {
     <div className="min-h-screen bg-slate-50/50 pb-20 font-sans">
       <Navbar />
 
-      <div className="bg-brand-900 pt-16 pb-32 relative overflow-hidden">
+      <div className="bg-brand-900 pt-10 sm:pt-16 pb-24 sm:pb-32 relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl -mr-48 -mt-48" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl -ml-32 -mb-32" />
 
-        <div className="max-w-5xl mx-auto px-6 relative z-10">
-          <div className="flex items-center gap-8">
-            <div className="w-24 h-24 rounded-[2rem] bg-accent-500 flex items-center justify-center text-5xl shadow-elevated animate-float">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-8">
+            <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-2xl sm:rounded-[2rem] bg-accent-500 flex items-center justify-center text-3xl sm:text-5xl shadow-elevated animate-float flex-shrink-0">
               🛒
             </div>
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-300 text-[10px] font-black uppercase tracking-widest mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-300 text-[10px] font-black uppercase tracking-widest mb-3 sm:mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-400" />
                 Order Tracking
               </div>
-              <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-none mb-3">Your <span className="text-brand-400">Orders</span></h1>
-              <p className="text-brand-100/60 font-medium text-lg">Manage your purchases and subscriptions from local farms.</p>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-none mb-2 sm:mb-3">Your <span className="text-brand-400">Orders</span></h1>
+              <p className="text-brand-100/60 font-medium text-sm sm:text-lg">Manage your purchases and subscriptions from local farms.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 -mt-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 -mt-12 sm:-mt-16">
         {/* Navigation Tabs - Modern Underline Style */}
         <div className="flex bg-white/50 backdrop-blur-md border border-white rounded-[2.5rem] p-2 mb-12 shadow-premium overflow-hidden">
           {[
@@ -141,13 +141,13 @@ export default function BuyerOrders() {
                 {[1, 2, 3].map(i => <div key={i} className="h-24 bg-white rounded-3xl animate-pulse shadow-sm border border-slate-50" />)}
               </div>
             ) : orders.length === 0 ? (
-              <div className="bg-white rounded-[3rem] p-32 text-center border border-slate-100 shadow-sm">
-                <div className="text-7xl mb-8 opacity-40">📦</div>
-                <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight uppercase">Empty Basket</h3>
-                <p className="text-slate-400 font-medium max-w-sm mx-auto mb-10">You haven't placed any orders yet. The harvest is waiting for you in the marketplace!</p>
+              <div className="bg-white rounded-3xl sm:rounded-[3rem] p-8 sm:p-20 md:p-32 text-center border border-slate-100 shadow-sm">
+                <div className="text-5xl sm:text-7xl mb-4 sm:mb-8 opacity-40">📦</div>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-3 sm:mb-4 tracking-tight uppercase">Empty Basket</h3>
+                <p className="text-slate-400 font-medium max-w-sm mx-auto mb-6 sm:mb-10 text-sm">You haven't placed any orders yet. The harvest is waiting for you in the marketplace!</p>
                 <button
                   onClick={() => navigate('/marketplace')}
-                  className="px-10 py-4 bg-brand-600 text-white rounded-2xl font-bold text-sm shadow-lg shadow-brand-100 hover:bg-brand-700 active:scale-95"
+                  className="px-6 sm:px-10 py-3 sm:py-4 bg-brand-600 text-white rounded-2xl font-bold text-sm shadow-lg shadow-brand-100 hover:bg-brand-700 active:scale-95"
                 >
                   Go to Marketplace
                 </button>
